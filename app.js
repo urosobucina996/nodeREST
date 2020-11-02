@@ -1,6 +1,8 @@
 const express = require('express');
 const app     = express();
-const port    = 4000;
+
+// PORT from enviroment or 4000
+const port    = process.env.PORT || 4000;
 
 
 app.get('/',(req, res) =>{
@@ -11,13 +13,13 @@ app.get('/api/users', (req, res) =>{
     res.send(JSON.stringify([1,2,4]));
 });
 
-// Old way
-// const server = http.createServer((req, res) => {
-//
-//     res.write("Into response Node.");
-//     res.end();
-//
-// });
+
+// Pass parametar
+app.get('/api/users/:id', (req, res) => {
+
+    res.send(req.params.id);
+
+});
 
 app.listen(port, function (error) {
 
