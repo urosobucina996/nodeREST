@@ -1,27 +1,17 @@
 const express = require('express');
-const app     = express();
+const route   = express();
+
+
 
 // PORT from enviroment or 4000
 const port    = process.env.PORT || 4000;
 
+const workersRoutes = require('./routes/workers');
 
-app.get('/',(req, res) =>{
-    res.send(`Into the express response,`);
-});
-
-app.get('/api/users', (req, res) =>{
-    res.send(JSON.stringify([1,2,4]));
-});
+route.use('/api/users', workersRoutes);
 
 
-// Pass parametar
-app.get('/api/users/:id', (req, res) => {
-
-    res.send(req.params.id);
-
-});
-
-app.listen(port, function (error) {
+route.listen(port, function (error) {
 
     if(error){
         console.log(error);
