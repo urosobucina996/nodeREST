@@ -23,6 +23,12 @@ function find(res,parameter = null,restrictions = null){
         });
 }
 
+function inserOne(data){
+
+    let insert = new mongoose(data);
+    insert.save();
+}
+
 
 route.get('/', (req, res) => {
 
@@ -44,8 +50,8 @@ route.get('/:name', (req, res) => {
 
 route.post('/', (req, res) => {
 
-    res.send(req.body);
-
+    inserOne(req.body);
+    res.redirect('/');
 });
 
 module.exports = route;

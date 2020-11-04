@@ -13,7 +13,7 @@ const workersDataSchema =  mongoose.Schema({
     age      : Number
 }, {collection:'workers'});
 
-const WorkersData = mongoose.model('WorkersData',workersDataSchema)
+const WorkersData = mongoose.model('WorkersData',workersDataSchema);
 
 
 module.exports = WorkersData;
