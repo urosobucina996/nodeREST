@@ -9,25 +9,36 @@ const assert      = require('assert');
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: true }));
 
+function find(res,parameter = null,restrictions = null){
 
-route.get('/', (req, res) => {
+    const param = parameter ? {'name' : parameter} : {};
+    const restr = restrictions ? {} : {'_id' : 0};
 
-    //Get data from collection
-    mongoose.find()
-        .then((data) =>{
+    mongoose.find(param, restr)
+        .then((data) => {
             res.send(data);
         })
         .catch((err) => {
             console.log(err);
         });
+}
+
+
+route.get('/', (req, res) => {
+
+    //Get data from collection
+    find(res);
 
 });
 
 
 // Pass parametar
-route.get('/:id', (req, res) => {
+route.get('/:name', (req, res) => {
 
-    res.send(req.params.id);
+    //res.send(req.params.name);
+    // Dinamicly make fields for show data.
+    const restrictions = ['_id','name'];
+    find(res,req.params.name);
 
 });
 
