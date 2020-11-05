@@ -9,10 +9,13 @@ const assert      = require('assert');
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: true }));
 
+
+// --------  Functions for CRUD ----------- //
+
 function find(res,parameter = null,restrictions = null){
 
     const param = parameter ? {'name' : parameter} : {};
-    const restr = restrictions ? {} : {'_id' : 0};
+    const restr = restrictions ? {} : {'_id' : 0, '__v':0};
 
     mongoose.find(param, restr)
         .then((data) => {
@@ -29,7 +32,21 @@ function inserOne(data){
     insert.save();
 }
 
+function updateRow(data, res){
 
+    mongoose.update({'name':data.name,'lastname':data.lastname},{'age':data.age})
+        .then(() => {
+            res.send(`Data updated!`);
+        })
+        .catch( (err) => {
+            console.log(err);
+        });
+}
+
+// -------- End Functions for CRUD ----------- //
+
+
+// -------- Routes --------- //
 route.get('/', (req, res) => {
 
     //Get data from collection
@@ -54,4 +71,18 @@ route.post('/', (req, res) => {
     res.redirect('/');
 });
 
+route.patch('/', (req, res) => {
+
+
+    updateRow(req.body,res);
+
+});
+
+
+// -------- End of Routes ------- //
+
+// -------- Exports -------- //
+
 module.exports = route;
+
+// -------- End of Exports ------- //
