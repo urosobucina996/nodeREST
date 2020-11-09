@@ -8,8 +8,14 @@ mongoose.connect(url);
 const schemaWorkers = mongoose.Schema;
 
 const workersDataSchema =  mongoose.Schema({
-    name     : String,
-    lastname : String,
+    name     : {
+        type     : String,
+        required : true
+    },
+    lastname : {
+        type     : String,
+        required : true
+    },
     age      : Number
 }, {collection:'workers'});
 

@@ -3,7 +3,7 @@ const route      = express.Router();
 const bodyParser = require("body-parser");
 
 // DB Mongo
-const mongoose   = require('../database/mongodb');
+const mongoose    = require('../database/mongodb');
 const assert      = require('assert');
 
 route.use(bodyParser.json());
@@ -26,10 +26,21 @@ function find(res,parameter = null,restrictions = null){
         });
 }
 
-function inserOne(data){
+function inserOne(data,res){
 
-    let insert = new mongoose(data);
-    insert.save();
+    let insert = new mongoose({
+        name     : data.name,
+        lastname : data.lastname,
+        age      : data.age
+    });
+    // Promise after exec
+    insert.save()
+        .then(data => {
+            res.status(200).json(data);
+        })
+        .catch(err =>{
+            res.status(400).json(err);
+        });
 }
 
 function updateRow(data, res){
@@ -67,8 +78,8 @@ route.get('/:name', (req, res) => {
 
 route.post('/', (req, res) => {
 
-    inserOne(req.body);
-    res.redirect('/');
+    inserOne(req.body,res);
+    //res.redirect('/api/');
 });
 
 route.patch('/', (req, res) => {
