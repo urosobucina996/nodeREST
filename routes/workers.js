@@ -54,6 +54,17 @@ function updateRow(data, res){
         });
 }
 
+function deleteRow(res,data){
+
+    mongoose.deleteOne({_id : data})
+        .then( ()=>{
+            res.status(200).json({message: "Deleted data."});
+        })
+        .catch( (err) => {
+            res.status(400).json({ message: err});
+        });
+}
+
 // -------- End Functions for CRUD ----------- //
 
 
@@ -87,6 +98,11 @@ route.patch('/', async (req, res) => {
 
     await updateRow(req.body,res);
 
+});
+
+route.delete("/:id", async (req,res) => {
+
+    await deleteRow(res,req.params.id)
 });
 
 
