@@ -6,11 +6,7 @@ const route   = express();
 // PORT from enviroment or 4000
 const port    = process.env.PORT || 4000;
 
-const workersRoutes = require('./routes/workers');
-
-route.use('/api/users', workersRoutes);
-
-
+// Response that server is running
 route.listen(port, function (error) {
 
     if(error){
@@ -19,4 +15,14 @@ route.listen(port, function (error) {
         console.log(`Listening on port ${port}`);
     }
 
+});
+
+const workersRoutes = require('./routes/workers');
+
+route.use('/api/users', workersRoutes);
+
+
+// If there is not defined route triggered this is response.
+route.use((req, res) => {
+    res.status(404).json({message:"Server not respond."})
 });
