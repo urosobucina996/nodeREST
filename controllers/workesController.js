@@ -1,6 +1,11 @@
 // DB Mongo
 const mongoose    = require('../database/mongodb');
 
+const bodyParser = require("body-parser");
+const request    = require('request');
+
+const assert      = require('assert');
+
 // --------  Functions for CRUD ----------- //
 
 function find(res,parameter = null,restrictions = null){

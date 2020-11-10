@@ -1,11 +1,9 @@
 const express    = require('express');
 const route      = express.Router();
-const bodyParser = require("body-parser");
-const request    = require('request');
 
 
-const assert      = require('assert');
 const workersController = require("../controllers/workesController");
+
 route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({ extended: true }));
 
