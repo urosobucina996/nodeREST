@@ -1,7 +1,7 @@
 // DB Mongo
 const mongoose    = require('../database/mongodb');
 
-const bodyParser = require("body-parser");
+
 const request    = require('request');
 
 const assert      = require('assert');
@@ -63,30 +63,30 @@ function deleteRow(res,data){
 
 // -------- End Functions for CRUD ----------- //
 
-const get = (async (req,res) => {
+const get = async (req,res) => {
     await find(res);
-});
+};
 
 
-const getByName = ( async (req, res) => {
+const getByName = async (req, res) => {
 
         //res.send(req.params.name);
         // Dinamicly make fields for show data.
         const restrictions = ['_id','name'];
         await find(res,req.params.name);
-});
+};
 
-const insertData = ( async (req, res) => {
+const insertData = async (req, res) => {
     await inserOne(req.body,res);
-});
+};
 
-const updateData = ( async (req, res) => {
+const updateData = async (req, res) => {
     await updateRow(req.body,res);
-});
+};
 
-const deleteData = ( async (req, res) => {
+const deleteData = async (req, res) => {
     await deleteRow(res,req.params.id)
-});
+};
 
 
 module.exports = {

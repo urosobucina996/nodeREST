@@ -1,6 +1,6 @@
 const express    = require('express');
 const route      = express.Router();
-
+const bodyParser = require("body-parser");
 
 const workersController = require("../controllers/workesController");
 
