@@ -1,10 +1,11 @@
 const express = require('express');
 const route   = express();
 
-
+require('dotenv').config();
 
 // PORT from enviroment or 4000
 const port    = process.env.PORT || 4000;
+
 
 // Response that server is running
 route.listen(port, function (error) {

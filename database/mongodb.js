@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const url = "mongodb://127.0.0.1:27017/personData";
+const url      = process.env.DATABASE;
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
