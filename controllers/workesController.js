@@ -1,10 +1,6 @@
 // DB Mongo
 const mongoose    = require('../database/mongodb');
 
-const axios       = require('axios');
-
-const request     = require('request');
-
 const assert      = require('assert');
 
 // --------  Functions for CRUD ----------- //
