@@ -11,8 +11,6 @@ route.use(bodyParser.urlencoded({ extended: true }));
 // -------- Routes --------- //
 route.get('/', workersController.get);
 
-
-// Pass parametar
 route.get('/:name', workersController.getByName);
 
 route.post('/', workersController.insertData);

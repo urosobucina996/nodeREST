@@ -19,8 +19,10 @@ route.listen(port, function (error) {
 });
 
 const workersRoutes = require('./routes/workers');
+const guitarsRoutes = require('./routes/guitars');
 
 route.use('/api/users', workersRoutes);
+route.use('/api/guitar', guitarsRoutes);
 
 
 // If there is not defined route triggered this is response.
